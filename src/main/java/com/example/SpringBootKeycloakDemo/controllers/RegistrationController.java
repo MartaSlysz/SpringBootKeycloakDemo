@@ -3,12 +3,10 @@ package com.example.SpringBootKeycloakDemo.controllers;
 import com.example.SpringBootKeycloakDemo.model.User;
 import com.example.SpringBootKeycloakDemo.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
-@RequestMapping("/register")
+@RestController
 public class RegistrationController {
 
     private final UserRepository userRepository;
@@ -18,7 +16,7 @@ public class RegistrationController {
         this.userRepository = userRepository;
     }
 
-    @PostMapping
+    @PostMapping(value = "/register")
     public String processRegistration(String username, String password){
         User user = new User(username, password);
         userRepository.save(user);
